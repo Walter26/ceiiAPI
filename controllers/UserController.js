@@ -66,4 +66,15 @@ UserController.getActivities = async function(req, res) {
     }
 }
 
+UserController.getUserActivities = async function(req, res) {
+    let query = 'SELECT act.actName, act.actDate, r.regDate, act.done' +
+    'FROM USR u INNER JOIN REGISTRATION r ON u.email = r.regEmail' +
+    'INNER JOIN ACTIVITY act ON r.idAct = act.idAct WHERE u.usrname = ' + req.params.usrname;
+    sequelize.query(query).then(rows => {
+        res.status(200).json({
+            data: JSON.stringify(rows)
+        })
+    })
+}
+
 module.exports = UserController;
