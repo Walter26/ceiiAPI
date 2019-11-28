@@ -5,8 +5,12 @@ const sequelize = new Sequelize(
     'oifurivn',
     'pXjYG3225DZ-1Tjfy9lh8RiHi0GCJrcn',
     {
-        host: 'raja.db.elephantsql.com',
+        host: 'http://raja.db.elephantsql.com',
         dialect: 'postgresql',
+        dialectOption: {
+            ssl: true,
+            native: true
+        },
         pool: {
             max: 5,
             min: 0,
