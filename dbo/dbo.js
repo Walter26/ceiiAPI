@@ -1,11 +1,11 @@
 var Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(
-    'ceiiuca',
-    'postgres',
-    'admin',
+    'oifurivn',
+    'oifurivn',
+    'pXjYG3225DZ-1Tjfy9lh8RiHi0GCJrcn',
     {
-        host: 'localhost',
+        host: 'raja.db.elephantsql.com',
         dialect: 'postgresql',
         pool: {
             max: 5,
