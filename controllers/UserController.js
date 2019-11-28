@@ -72,10 +72,12 @@ UserController.getUserActivities = async function(req, res) {
     let query = 'SELECT act.actName, act.actDate, r.regDate, act.done' +
     'FROM USR u INNER JOIN REGISTRATION r ON u.email = r.regEmail' +
     'INNER JOIN ACTIVITY act ON r.idAct = act.idAct WHERE u.usrname = ' + usrname;
-    let insciptions = await sequelize.query(query, {
+    let inscriptions = await sequelize.query(query, {
         type: Sequelize.QueryTypes.SELECT
     })
-    console.log(insciptions);
+    res.status(200).json({
+        data: inscriptions
+    })
 }
 
 module.exports = UserController;
