@@ -52,16 +52,15 @@ UserController.addUser = async function(req, res) {
 }
 
 UserController.getUserActivities = async function(req, res) {
-    res.send(JSON.stringify(req))
-    // const { actid } = req.params;
-    // let searchedActivity = await Activity.findOne({
-    //     where: {
-    //         actid
-    //     }
-    // });
-    // res.status(200).json({
-    //     data: searchedActivity
-    // })
+    const { actid } = req.params;
+    const act = await Activity.findOne({
+        where: {
+            actid
+        }
+    })
+    res.status(200).json({
+        data: act
+    })
 }
 
 UserController.getActivities = async function(req, res) {
