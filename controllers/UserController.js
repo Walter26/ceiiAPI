@@ -40,7 +40,6 @@ UserController.addUser = async function(req, res) {
             usrtype,
             fullname
         })
-
         if(newUser)
             res.status(200).json({
                 message: "User created",
@@ -52,8 +51,18 @@ UserController.addUser = async function(req, res) {
     }
 }
 
-UserController.updateUser = async function(req, res) {
-
+UserController.getUserActivities = async function(req, res) {
+    const { usrname } = req.params;
+    console.log(usrname)
+    let query = 'SELECT act.actName, act.actDate, r.regDate, act.done' +
+    'FROM USR u INNER JOIN REGISTRATION r ON u.email = r.regEmail' +
+    'INNER JOIN ACTIVITY act ON r.idAct = act.idAct WHERE u.usrname = ' + usrname;
+    let inscriptions = await sequelize.query(query, {
+        type: Sequelize.QueryTypes.SELECT
+    })
+    res.status(200).json({
+        data: inscriptions
+    })
 }
 
 UserController.getActivities = async function(req, res) {
@@ -65,19 +74,6 @@ UserController.getActivities = async function(req, res) {
     } catch(e){
 
     }
-}
-
-UserController.getUserActivities = async function(req, res) {
-    const { usrname } = req.params;
-    let query = 'SELECT act.actName, act.actDate, r.regDate, act.done' +
-    'FROM USR u INNER JOIN REGISTRATION r ON u.email = r.regEmail' +
-    'INNER JOIN ACTIVITY act ON r.idAct = act.idAct WHERE u.usrname = ' + usrname;
-    let inscriptions = await sequelize.query(query, {
-        type: Sequelize.QueryTypes.SELECT
-    })
-    res.status(200).json({
-        data: inscriptions
-    })
 }
 
 module.exports = UserController;
