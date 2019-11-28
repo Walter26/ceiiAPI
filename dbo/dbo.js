@@ -5,7 +5,7 @@ const sequelize = new Sequelize(
     'oifurivn',
     'pXjYG3225DZ-1Tjfy9lh8RiHi0GCJrcn',
     {
-        host: 'raja.db.elephantsql.com',
+        host: 'https://raja.db.elephantsql.com',
         dialect: 'postgresql',
         pool: {
             max: 5,
